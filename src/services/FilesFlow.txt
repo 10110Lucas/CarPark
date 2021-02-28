@@ -1,0 +1,59 @@
+import React from 'react';
+import RNFS from 'react-native-fs';
+
+const pathGaragem = 'content://com.locador.provider/root/storage/emulated/0/Locador/Media/Garagem/';
+const pathPerfil = 'content://com.locador.provider/root/storage/emulated/0/Locador/Media/Perfil/';
+
+class FilesFlow extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this._id = null;
+        this._mounted = false;
+    }
+
+    componentWillMount(){
+		this._mounted = true;
+	}
+	componentWillUnmount(){
+        this._mounted = false;
+
+        if(this._id){
+            RNFS.stopDownload(this._id);
+        }
+    }
+    
+    // Faz download do arquivo requisitado, no caso uma imagem
+    static download = async (url, pasta) => {
+
+        let path = '';
+        if (String(pasta) === 'Garagem'){
+            path = pathGaragem;
+        }else if (String(pasta) === 'Perfil'){
+            path = pathPerfil;
+        }
+
+        const download = RNFS.downloadFile({
+            fromUrl: url,
+            toFile: path,
+        });
+
+        this._id = download.jobId;
+        console.log('id gerado:',this._id);
+
+        download.promise.then( result => {
+            console.log(`Test: ${result}`);
+            this._id = null;
+
+            if( this._mounted && result.statusCode === 200 && result.bytesWritten > 0 ){
+                console.log(`baixado com sucesso: ${result}`);
+            }else {
+                console.log(`Falha no download da iamgem`);
+                return;
+            }
+        }).catch(err => console.log(`Download cancelado, erro: ${err}`));
+    }
+}
+
+export default FilesFlow;
