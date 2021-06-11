@@ -1,9 +1,9 @@
 # CarPark
 Projeto desenvolvido para o TCC da Universidade São Judas Tadeu sediado no bairro da Mooca em São Paulo.
 
-  É um aplicativo destinado ao **Locatario**, em que ajuda a encontrar uma garagem para seu veículo de forma ágil, além de gerar uma renda extra para locador da garagem.
+É um aplicativo destinado ao **Locador**, que disponibiliza a garagem para os usuários do aplicativo CarPark alugarem.
   
-  Esse pojeto foi desenvolvido em conjuto com o aplicativo [CarParkDriver](https://github.com/10110Lucas/CarParkDriver), que é o aplicativo destinado ao **Locador**.
+Esse pojeto foi desenvolvido em conjuto com o aplicativo [CarParkDriver](https://github.com/10110Lucas/CarParkDriver), que é o aplicativo destinado ao **Locatario**.
 
 Tecnologias utilizadas nesse projeto:
 - Framework React (React Native).
@@ -15,3 +15,6 @@ Tecnologias utilizadas nesse projeto:
   * Auth
   * Database
   * Storage
+
+
+
